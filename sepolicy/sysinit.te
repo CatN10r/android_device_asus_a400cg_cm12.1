@@ -1,0 +1,7 @@
+#============= sysinit ==============
+allow sysinit cgroup:dir { add_name create };
+#============= sysinit ==============
+allow sysinit system_data_file:dir { write };
+allow sysinit block_device:dir { search };
+allow sysinit system_data_file:file { write append };
+

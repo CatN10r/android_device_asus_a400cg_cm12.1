@@ -1,0 +1,4 @@
+
+#============= ueventd ==============
+allow ueventd sysfs_thermal_management:file { write open };
+

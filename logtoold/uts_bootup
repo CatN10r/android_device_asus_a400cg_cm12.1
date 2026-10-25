@@ -1,0 +1,24 @@
+#!/system/bin/sh
+
+UTS_VERSION=1
+WRITE_LOG="log -p d -t UTS-bootup_setting"
+
+set -x
+
+BUILD_TYEP=`getprop ro.build.type`
+VERSION=`getprop ro.build.version.incremental | busybox awk -F "-" '{ print $2}'`
+SKU=`getprop ro.product.name | busybox awk -F "_" '{ print $1}'`
+
+UTS_FOLDER=/data/uts/${SKU}_${VERSION}
+
+UTS_ENABLE=`getprop persist.asus.autoupload.enable`
+if [ "$UTS_ENABLE" == "1" ]; then
+    setprop ro.uts.logging.path ${UTS_FOLDER}
+    mkdir -p ${UTS_FOLDER}
+    mkdir -p /data/uts/dontpanic
+    echo "UTS_VERSION=${UTS_VERSION}" > ${UTS_FOLDER}/version_bk.txt
+    setprop uts.logging 1
+else
+    setprop uts.logging 0
+	rm -rf /data/uts
+fi

@@ -1,0 +1,54 @@
+import init.bt.vendor.rc
+
+# Point on the right bt_vendor.conf at runtime
+on property:ro.bt.uart=ttyMFD0
+    setprop ro.bt.conf_file /system/etc/bluetooth/bt_redhookbay_ttyMFD0.conf
+
+on property:ro.bt.uart=ttyMFD3
+    setprop ro.bt.conf_file /system/etc/bluetooth/bt_redhookbay_ttyMFD3.conf
+
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+    class main
+    group bluetooth wifi system dhcp
+    disabled
+    oneshot
+
+service iprenew_bt-pan /system/bin/dhcpcd -n
+    group bluetooth system dhcp
+    disabled
+    oneshot
+
+service bd_prov /system/bin/bd_prov
+    class core
+    user root
+    group system bluetooth
+    disabled
+    oneshot
+    seclabel u:r:bluetooth:s0
+
+service bdt /system/bin bdt s
+    disabled
+    oneshot
+
+service BrcmService /system/bin/BrcmService.sh
+    disabled
+    oneshot
+
+service BrcmChmod /system/bin/BrcmChmod.sh
+    disabled
+    oneshot
+
+service disableBtc /system/bin/wl btc_flags 0 0
+    disabled
+    oneshot
+
+service enableBtc /system/bin/wl btc_flags 0 1
+    disabled
+    oneshot
+
+on property:bluetooth.bt.btc=1
+    start enableBtc
+
+on property:bluetooth.bt.btc=0
+    start disableBtc
+

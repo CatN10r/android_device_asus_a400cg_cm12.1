@@ -1,0 +1,39 @@
+#!/system/bin/sh
+
+PATH=/data/data/com.asus.LogTool/files:$PATH
+export PATH
+
+WRITE_LOG="log -p d -t ASUS_MTS-SH"
+
+set -x
+
+#$WRITE_LOG "at+xsystrace=20 > /dev/gsmtty19"
+#echo -e -r "at+xsystrace=20\r\n" > /dev/gsmtty19
+#sleep 1
+#$WRITE_LOG "at+xsystrace=10 > /dev/gsmtty19"
+#echo -e -r "at+xsystrace=10\r\n" > /dev/gsmtty19
+#sleep 1
+#$WRITE_LOG "at+xsystrace=11 > /dev/gsmtty19"
+#echo -e -r "at+xsystrace=11\r\n" > /dev/gsmtty19
+#sleep 1
+#$WRITE_LOG "at+trace=? > /dev/gsmtty19"
+#echo -e -r "at+trace=?\r\n" > /dev/gsmtty19
+#sleep 3
+
+$WRITE_LOG "no stop modem trace..."
+#$WRITE_LOG "at@xl1:xllt_set_template(1,{basic}) > /dev/gsmtty19"
+# echo -e -r "at@xl1:xllt_set_template(1,{basic})\r\n" > /dev/gsmtty19
+#sleep 1
+#$WRITE_LOG "at+trace=0 > /dev/gsmtty19"
+# echo -e -r "at+trace=0\r\n" > /dev/gsmtty19
+#sleep 1
+#$WRITE_LOG "at+xsystrace=0 > /dev/gsmtty19"
+# echo -e -r "at+xsystrace=0\r\n" > /dev/gsmtty19
+#sleep 1
+#$WRITE_LOG "at@xl1:dsptrace_stop(1) > /dev/gsmtty19"
+# echo -e -r "at@xl1:dsptrace_stop(1)\r\n" > /dev/gsmtty19
+#sleep 1
+#$WRITE_LOG "at@xl1:sc_config_3g(0) > /dev/gsmtty19"
+# echo -e -r "at@xl1:sc_config_3g(0)\r\n" > /dev/gsmtty19
+
+setprop logtool.call.setting 0

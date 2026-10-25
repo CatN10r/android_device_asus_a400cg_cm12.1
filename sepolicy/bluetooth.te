@@ -1,0 +1,21 @@
+type bd_prov_exec, exec_type, file_type;
+
+domain_auto_trans(init, bd_prov_exec, bluetooth)
+
+
+allow bluetooth bluetooth_control:chr_file { rw_file_perms };
+#allow bluetooth config_file:dir { search read };
+#allow bluetooth config_file:file {read write open };
+#============= bluetooth ==============
+allow bluetooth config_file:dir { write search getattr add_name };
+allow bluetooth config_file:file { write read create open setattr getattr};
+allow bluetooth sysfs:file {write};
+allow bluetooth tty_device:chr_file {read ioctl write};
+allow bluetooth tty_device:chr_file {open};
+
+#============= bluetooth ==============
+allow bluetooth bd_prov_exec:file { entrypoint read };
+#============= bluetooth ==============
+allow bluetooth sep_device:chr_file { read write open };
+
+

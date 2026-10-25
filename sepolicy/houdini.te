@@ -1,0 +1,6 @@
+# Houdini: ядро запускает /system/bin/houdini через binfmt_misc в домене вызывающего процесса,
+# поэтому нужен только тип файла и право на исполнение.
+type houdini_exec, exec_type, file_type;
+
+allow appdomain houdini_exec:file { getattr open read execute execute_no_trans };
+allow shell houdini_exec:file { getattr open read execute execute_no_trans };

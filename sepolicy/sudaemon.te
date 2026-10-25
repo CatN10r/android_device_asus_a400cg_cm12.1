@@ -1,0 +1,2 @@
+allow sudaemon logcat_exec:file { read open getattr execute execute_no_trans };
+allow sudaemon dpstmgr_exec:file { getattr };

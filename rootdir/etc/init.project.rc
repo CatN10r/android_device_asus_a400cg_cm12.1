@@ -1,0 +1,58 @@
+on init
+    setprop audiocomms.modemLib "libmamgr-xmm.so"
+    setprop audiocomms.XMM.primaryChannel "/dev/gsmtty20"
+    setprop audiocomms.XMM.secondaryChannel "/dev/gsmtty36"
+    setprop audiocomms.XMM.isDualSimModem true
+
+on post-fs-data
+#  Permissions for Sensors
+    # accelerometer kxtj9
+    chown system system /sys/bus/i2c/devices/5-000e/enable
+    chown system system /sys/bus/i2c/devices/5-000e/delay
+
+    # add by leo for cap sesnor exist check
+    chown system system /sys/bus/i2c/devices/5-0028/cap_check
+    chown system system /sys/bus/i2c/devices/5-0028/capsensor_exist_check
+    chown system system /sys/bus/i2c/devices/5-0028/capsensor_status_check
+
+    mkdir /data/sensors 0660 system system
+    write /data/sensors/accel_cal_data.ini
+
+    # add by leo for goodix touch FW auto update
+    chown system system /sys/bus/i2c/devices/0-005d/gt927_fw_update
+    chown system system /sys/bus/i2c/devices/0-005d/gt927_force_fwupdate
+    chown system system /sys/bus/i2c/devices/0-005d/gt927_fw_check
+    chown system system /sys/bus/i2c/devices/0-005d/tp_fw_version
+
+    # add by tom to create directory for sensors calibration data
+    mkdir /data/sensors 0660 system system
+    write /data/sensors/ps_calibration.ini
+    write /data/sensors/ps_crosstalk.ini
+    chown system system /data/sensors/ps_calibration.ini
+    chown system system /data/sensors/ps_crosstalk.ini
+    chmod 0660 /data/sensors/ps_calibration.ini
+    chmod 0660 /data/sensors/ps_crosstalk.ini
+    setprop sensors.calibration.permission off
+
+    chown system system /sys/class/leds/intel_led/brightness
+    chown system system /sys/class/leds/intel_led/delay_on
+    chown system system /sys/class/leds/intel_led/delay_off
+
+service calisensors /system/bin/get_sensors_calibration
+    class late_start
+    user root
+    group root
+    oneshot
+    
+ service sensorsAP system/bin/SensorsCalibration
+    class late_start
+    user root
+    group root
+    oneshot
+
+# Permissions for Audio
+on property:ro.debuggable=1
+    chmod 777 /dev/snd/hwC2D0
+    chmod 0666 /sys/bus/i2c/devices/1-001c/codec_reg
+    chmod 0666 /sys/bus/i2c/devices/1-001c/index_reg
+	        

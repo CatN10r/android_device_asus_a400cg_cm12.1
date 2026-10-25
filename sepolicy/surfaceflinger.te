@@ -1,0 +1,4 @@
+allow surfaceflinger hwc_service:service_manager add;
+allow surfaceflinger graphics_device:chr_file rw_file_perms;
+#binder_call(surfaceflinger, pclinkd)
+allow surfaceflinger system_server_service:service_manager add;

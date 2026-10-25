@@ -1,0 +1,14 @@
+#============= wlan_prov ==============
+type wlan_prov, domain;
+type wlan_prov_exec, exec_type, file_type;
+init_daemon_domain(wlan_prov)
+
+# Access to / in search
+allow wlan_prov factory_file:dir { write search getattr add_name };
+
+# Access to /factory/wifi/mac.txt
+#allow wlan_prov factory_file:file { create read write open };
+allow wlan_prov factory_file:file { write read create open setattr getattr};
+#============= wlan_prov ==============
+allow wlan_prov sep_device:chr_file { read write ioctl open };
+

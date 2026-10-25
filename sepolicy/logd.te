@@ -1,0 +1,2 @@
+#============= logd ==============
+#allow logd system_file:file entrypoint;

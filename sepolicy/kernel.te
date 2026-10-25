@@ -1,0 +1,8 @@
+allow kernel radio_device:file relabelto;
+allow kernel radio_device:dir relabelto;
+
+
+allow radio_device sysfs:filesystem associate;
+#============= kernel ==============
+allow kernel self:process setfscreate;
+

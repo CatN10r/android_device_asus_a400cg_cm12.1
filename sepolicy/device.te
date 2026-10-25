@@ -1,0 +1,5 @@
+type intel_sst_ctrl_device, dev_type;
+type sep_device, dev_type;
+type i2c_device, dev_type;
+type switch_ctrl_device, dev_type;
+type ug31xx_device, dev_type;

@@ -1,0 +1,12 @@
+/dev/block/mmcblk0p9	/system		ext4	ro,noatime										wait
+/dev/block/mmcblk0p3	/factory	ext4	nosuid,nodev,noatime,barrier=1,data=ordered						wait
+/dev/block/mmcblk0p5	/config		ext4	nosuid,nodev,noatime,barrier=1,data=ordered						wait
+/dev/block/mmcblk0p6	/cache		ext4	nosuid,nodev,noatime,barrier=1,journal_async_commit,data=ordered			wait,check
+/dev/block/mmcblk0p10	/data		ext4	nosuid,nodev,noatime,barrier=1,journal_async_commit,data=ordered,noauto_da_alloc,discard	wait,check,encryptable=/factory/userdata_footer
+/dev/block/by-name/boot		/boot		emmc	defaults								recoveryonly
+/dev/block/by-name/recovery	/recovery	emmc	defaults								recoveryonly
+
+*/block/sd*		auto		vfat	defaults	wait,voldmanaged=USBdisk1:auto
+*/block/sd*		auto		vfat	defaults	wait,voldmanaged=USBdisk2:auto
+*/block/mmcblk1*	auto		vfat	defaults	wait,voldmanaged=MicroSD:auto,noemulatedsd
+/dev/block/zram0	none		swap	defaults	zramsize=268435456

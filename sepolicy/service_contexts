@@ -1,0 +1,48 @@
+
+#telecom                                   u:object_r:radio_service:s0
+#themes                                    u:object_r:system_server_service:s0
+UTS_PWR                                   u:object_r:system_server_service:s0
+CTA_SERVICE                               u:object_r:system_server_service:s0
+logtool-mos-user                          u:object_r:logtoold_service:s0
+logtool-cos-user                          u:object_r:logtoold_service:s0
+logtool-cos                               u:object_r:logtoold_service:s0
+logtool-cosk                              u:object_r:logtoold_service:s0
+logtool-executor                          u:object_r:logtoold_service:s0
+logtool-trigger                           u:object_r:logtoold_service:s0
+logt_bootup                               u:object_r:logtoold_service:s0
+logdog-conf                               u:object_r:logtoold_service:s0
+logdog-main                               u:object_r:logtoold_service:s0
+logdog-radio                              u:object_r:logtoold_service:s0
+logdog-events                             u:object_r:logtoold_service:s0
+logdog-system                             u:object_r:logtoold_service:s0
+klogdog                                   u:object_r:logtoold_service:s0
+tcpdump                                   u:object_r:logtoold_service:s0
+hcidump                                   u:object_r:logtoold_service:s0
+modemtrace                                u:object_r:logtoold_service:s0
+modemstop                                 u:object_r:logtoold_service:s0
+archive-logs                              u:object_r:logtoold_service:s0
+clear-logs                                u:object_r:logtoold_service:s0
+reset_modem                               u:object_r:logtoold_service:s0
+stop_modem_trace                          u:object_r:logtoold_service:s0
+logt_onechance                            u:object_r:logtoold_service:s0
+logbackup                                 u:object_r:logtoold_service:s0
+uts_bootup                                u:object_r:logtoold_service:s0
+audio_logging                             u:object_r:logtoold_service:s0
+
+uts-kernel                                u:object_r:logtoold_service:s0
+uts-main                                  u:object_r:logtoold_service:s0
+uts-radio                                 u:object_r:logtoold_service:s0
+uts-events                                u:object_r:logtoold_service:s0
+
+
+# Additional service_contexts rules
+securityfile                              u:object_r:securityfile_service:s0
+security                                  u:object_r:securitymanager_service:s0
+
+# Additional service_contexts rules
+oemtelephony                              u:object_r:radio_service:s0
+display.intel.mds                         u:object_r:display_service:s0
+cws_service_manager                       u:object_r:cws_service:s0
+hwc                                       u:object_r:hwc_service:s0
+#com.intel.security.service.ISEPService    u:object_r:ISEP_service:s0
+media.widi.uibc                           u:object_r:mediaserver_service:s0

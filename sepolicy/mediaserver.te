@@ -1,0 +1,30 @@
+allow mediaserver graphics_device:dir search;
+allow mediaserver default_prop:property_service set;
+allow mediaserver switch_ctrl_device:chr_file {read write open ioctl};
+allow mediaserver system_data_file:sock_file write;
+allow mediaserver intel_sst_ctrl_device:chr_file {read write open ioctl};
+
+
+allow mediaserver asec_apk_file:dir { add_name write};
+allow mediaserver asec_apk_file:file {open write};
+allow mediaserver camera_device:chr_file rw_file_perms;
+allow mediaserver factory_file:dir { search write add_name };
+allow mediaserver system_server:unix_stream_socket {read write};
+allow mediaserver factory_file:file {open read getattr};
+allow mediaserver asec_apk_file:file create;
+allow mediaserver sysfs_wake_lock:file {read open write};
+allow mediaserver mmgr_socket:sock_file {write};
+allow mediaserver mmgr:unix_stream_socket {connectto};
+allow mediaserver tty_device:chr_file {read open ioctl write getattr};
+# fix camera
+allow mediaserver surfaceflinger_tmpfs:file { read write };
+
+allow mediaserver sep_device:chr_file { open ioctl read write };
+
+allow mediaserver system_data_file:file { open append };
+
+unix_socket_connect(mediaserver, mmgr, mmgr)
+allow mediaserver socket_device:sock_file write;
+allow mediaserver dalvikcache_data_file:dir search;
+allow mediaserver system_app_data_file:dir search;
+allow mediaserver asec_apk_file:file create_file_perms;

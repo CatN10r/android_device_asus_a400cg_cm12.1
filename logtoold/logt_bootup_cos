@@ -1,0 +1,23 @@
+#!/system/bin/sh
+
+set -x
+
+printk ()
+{
+	echo "LogTool-COS: $1" > /dev/kmsg
+}
+
+DATE=`timestamp`
+LOGDIR="/cache/logtool/boot"
+
+printk "Check if is the first time booting"
+if [ -d "$LOGDIR/cos" ]; then
+  printk "First time booting kernel mesg exist"
+else
+  sleep 10
+	printk "wait for 10 seconds..."
+  mkdir $LOGDIR
+  mkdir $LOGDIR/cos
+	printk "Start dump first time booting kernel mesg"
+	dmesg > $LOGDIR/cos/cos_first_boot_kmesg.txt
+fi

@@ -1,0 +1,11 @@
+allow vold self:key { write search };
+allow vold self:key setattr;
+allow vold kernel:system module_request;
+allow vold system_data_file:dir setattr;
+allow vold ecryptfs:filesystem mount;
+allow vold ecryptfs:filesystem unmount;
+allow vold config_file:dir {open ioctl read getattr search};
+allow vold factory_file:dir { open ioctl read getattr search};
+
+#allow vold default_prop:property_service set;
+allow vold unlabeled:dir { add_name  write };

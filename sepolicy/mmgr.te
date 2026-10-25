@@ -1,0 +1,55 @@
+# Rules for mmgr
+type mmgr, domain;
+type mmgr_exec, exec_type, file_type;
+allow mmgr shell_exec:file { read open execute execute_no_trans };
+allow mmgr_exec shell_exec:file execute;
+allow shell mmgr_exec:file getattr;
+allow mmgr_exec mmgr_socket:sock_file { ioctl read write create getattr setattr lock relabelfrom relabelto append };
+
+init_daemon_domain(mmgr)
+allow mmgr tty_device:chr_file { read write open ioctl };
+allow mmgr factory_file:dir { add_name write search remove_name getattr read unlink open };
+allow mmgr factory_file:file { write create read getattr open unlink };
+allow mmgr sysfs_wake_lock:file { read write open };
+allow mmgr config_file:dir { add_name write search remove_name getattr read unlink };
+allow mmgr config_file:file { write create read getattr open unlink };
+
+allow mmgr system_file:file execute_no_trans;
+allow mmgr init:unix_stream_socket connectto;
+allow mmgr property_socket:sock_file write;
+allow mmgr sysfs_wake_lock:file { read write open };
+allow mmgr system_prop:property_service set;
+#allow mmgr unlabeled:dir create_dir_perms;
+# below line breaks neverallow in domain.te on line 170
+#allow mmgr unlabeled:file create_file_perms;
+allow mmgr usb_device:chr_file { read write getattr open ioctl };
+allow mmgr usb_device:dir { read open search };
+allow mmgr cache_file:dir create_dir_perms;
+allow mmgr cache_file:file { write create unlink open };
+
+allow mmgr sysfs:file write;
+# Below line breaks neverallow in domain.te on line 278
+#allow mmgr dalvikcache_data_file:file execute;
+allow mmgr self:process { execmem ptrace };
+allow mmgr servicemanager:binder call;
+allow mmgr shell_exec:file { read execute open execute_no_trans };
+allow mmgr system_file:file execute_no_trans;
+allow mmgr zygote_exec:file { read getattr open execute execute_no_trans };
+allow mmgr sysfs_autosuspend_enable:file { write open };
+allow mmgr tty_device:chr_file { read write ioctl open };
+allow mmgr device:dir { read open };
+
+#log
+allow mmgr log_file:file {write read open unlink getattr};
+allow mmgr system_data_file:dir { add_name create remove_name write};
+allow mmgr system_data_file:file { create write open unlink };
+
+#============= mmgr ==============
+allow mmgr config_file:file { write getattr };
+#allow mmgr dalvikcache_data_file:file execute;
+allow mmgr gpu_device:chr_file { open read write };
+allow mmgr proc_cpuinfo:file mounton;
+#allow mmgr factory_file:dir open;
+#allow mmgr self:process ptrace;
+
+

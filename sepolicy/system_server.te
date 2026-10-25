@@ -1,0 +1,30 @@
+
+# enable Battery Saver
+allow system_server thermal_socket:sock_file write;
+#allow system_server thermal:unix_dgram_socket sendto;
+
+# Property Service write
+#allow system_server shell_prop:property_service set;
+
+allow system_server factory_file:dir { search read };
+allow system_server factory_file:file  { open read getattr};
+allow system_server gps_data_file:fifo_file { write read open setattr create};
+allow system_server gps_data_file:dir { search add_name write };
+
+allow system_server init:unix_dgram_socket sendto;
+allow system_server surfaceflinger_tmpfs:file { read write };
+
+#allow system_server default_android_service:service_manager {add};
+
+#allow system_server pclinkd_socket:sock_file rw_file_perms;
+
+allow system_server mmgr:unix_stream_socket connectto;
+allow system_server mmgr_socket:sock_file write;
+allow system_server crashlogd:binder call;
+allow system_server init_shell:binder call;
+allow system_server unlabeled:file { write setattr };
+
+#============= system_server ==============
+allow system_server efs_file:dir { read open };
+allow system_server efs_file:file { read open };
+allow system_server init:binder transfer;

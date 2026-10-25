@@ -1,0 +1,32 @@
+#!/system/bin/sh
+
+set -x
+
+printk ()
+{
+	echo "LogTool-COS: $1" > /dev/kmsg
+}
+
+
+DATE=`timestamp`
+LOGDIR="/cache/logtool/cos/COS-$DATE"
+printk "Start running logtool-cos main log"
+
+ENABLE=`cat /cache/logtool/cos_enable`
+
+if [ "$ENABLE" == "1" ]; then
+	printk "Enable LogTool-COS logging"
+else
+	printk "Disable LogTool-COS logging"
+	while [ 1 ]
+	do
+		sleep 15
+	done
+fi
+
+mkdir -p $LOGDIR
+if [ -d "$LOGDIR" ]; then
+	printk "Starting logdog"
+    printk "/system/bin/logdog -d $LOGDIR -c /system/etc/logdog-main.conf"
+    exec /system/bin/logdog -d $LOGDIR -c /system/etc/logdog-main.conf
+fi

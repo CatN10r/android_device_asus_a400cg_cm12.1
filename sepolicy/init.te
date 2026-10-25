@@ -1,0 +1,40 @@
+allow rootfs rootfs:file setattr;
+#allow init rootfs:file setattr;
+allow init sensors_exec:file execute_no_trans;
+allow init mmgr_exec:file execute_no_trans;
+allow init self:capability {sys_admin sys_module};
+allow init fuse:dir mounton;
+allow init vfat:dir search;
+allow init bcu_cpufreqrel_exec:file execute_no_trans;
+allow init mediaserver:process { setsched };
+allow init system_file:dir { add_name remove_name };
+#============= init ==============
+allow init bluetooth:process transition;
+allow init kernel:system syslog_read;
+allow init app_data_file:dir { read search getattr };
+#============= init ==============
+allow init dpstmgr_exec:file execute_no_trans;
+#domain_trans(init, rootfs, pclinkd)
+
+allow init upi_ug31xx_exec:file execute_no_trans;
+allow init bluetooth:process { rlimitinh siginh };
+
+allow init logcat_exec:file execute_no_trans;
+allow init untrusted_app:process signal;
+
+
+#============= init ==============
+allow init atproxy_usbreset_exec:file execute_no_trans;
+#============= init ==============
+allow init port:tcp_socket name_connect;
+allow init self:tcp_socket { write getopt create read connect };
+
+#============= init ==============
+allow init block_device:blk_file create;
+
+#============= init ==============
+allow init app_data_file:file { getattr };
+
+#============= init ==============
+allow init radio_device:filesystem { associate };
+allow init sysfs:filesystem { associate };

@@ -1,0 +1,33 @@
+type bluetooth_control, dev_type;
+
+type ecryptfs, fs_type;
+type log_file, file_type;
+type sysfs_thermal_management, fs_type, sysfs_type;
+type thermal_socket, file_type;
+type config_file, file_type, data_file_type;
+type factory_file, file_type;
+type mmgr_socket, file_type;
+
+
+
+type nvm_ctl_socket, file_type;
+type sensors_exec, exec_type;
+
+type logcat_exec, exec_type;
+
+type dpstmgr_exec, exec_type;
+
+type atproxy_usbreset_exec, exec_type;
+
+
+# ueventd
+type sysfs_autosuspend_enable, fs_type, sysfs_type;
+
+# pclinkd Socket types
+#type pclinkd_socket, file_type;
+
+# binfmt_misc - Used by houdini
+type binfmt_misc, fs_type;
+
+type sysfs_coretemp, fs_type, sysfs_type;
+type sysfs_thermal_writable, fs_type, sysfs_type;

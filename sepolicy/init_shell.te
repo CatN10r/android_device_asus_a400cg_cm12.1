@@ -1,0 +1,18 @@
+#============= init_shell ==============
+allow init_shell ctl_default_prop:property_service set;
+# Additional init_shell rules
+allow init_shell zygote_exec:file execute_no_trans;
+allow init_shell dex2oat_exec:file execute_no_trans;
+allow init_shell self:process { ptrace execmem };
+allow init_shell unlabeled:filesystem getattr;
+allow init_shell fuse:dir rw_dir_perms;
+allow init_shell fuse:file getattr;
+#============= init_shell ==============
+allow init_shell system_prop:property_service set;
+#============= init_shell ==============
+allow init_shell ctl_gpsd_prop:property_service set;
+#allow init_shell logtoold_prop:property_service set;
+
+allow init_shell ctl_rildaemon_prop:property_service set;
+allow init_shell default_prop:property_service set;
+allow init_shell radio_prop:property_service set;

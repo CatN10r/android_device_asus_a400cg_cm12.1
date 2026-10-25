@@ -1,0 +1,18 @@
+epad.                   u:object_r:vold_prop:s0
+bsp.                    u:object_r:vold_prop:s0
+# ctl properties
+ctl.gpsd                u:object_r:ctl_gpsd_prop:s0
+
+#LogTool properties
+logtool.                u:object_r:logtool_prop:s0
+persist.logtool.        u:object_r:logtool_prop:s0
+persist.bt.             u:object_r:logtool_prop:s0
+system.at-proxy.        u:object_r:logtool_prop:s0
+persist.adb.            u:object_r:logtool_prop:s0
+persist.service.mts.    u:object_r:logtool_prop:s0
+
+#UTS properties
+persist.asus.           u:object_r:logtool_prop:s0
+uts.                    u:object_r:logtool_prop:s0
+#Miracast properties
+widi.                   u:object_r:miracast_prop:s0

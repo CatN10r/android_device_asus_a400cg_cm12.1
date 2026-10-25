@@ -1,0 +1,7 @@
+# Additional radio rules
+
+allow radio factory_file:file create_file_perms;
+allow radio factory_file:dir rw_dir_perms;
+#============= radio ==============
+allow radio radio_device:sock_file write;
+

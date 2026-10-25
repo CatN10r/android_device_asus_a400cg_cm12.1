@@ -1,0 +1,4 @@
+type logtool_prop, property_type;
+type ctl_gpsd_prop, property_type;
+type miracast_prop, property_type;
+#type vold_prop, property_type;

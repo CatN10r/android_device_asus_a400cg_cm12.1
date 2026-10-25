@@ -1,0 +1,33 @@
+on post-fs-data
+
+#A400CG
+on property:ro.system.id=3
+    chmod 664 /factory/ar0543_golden.txt
+    chmod 664 /factory/ar0543_response.txt
+    chmod 664 /factory/ar0543_shading.txt
+
+    chmod 664 /factory/gc0339_golden.txt
+    chmod 664 /factory/gc0339_response.txt
+    chmod 664 /factory/gc0339_shading.txt
+
+#ME372CL
+on property:ro.system.id=4
+    chmod 664 /factory/ar0543_golden.txt
+    chmod 664 /factory/ar0543_response.txt
+    chmod 664 /factory/ar0543_shading.txt
+
+    chmod 664 /factory/mi1040_golden.txt
+    chmod 664 /factory/mi1040_response.txt
+    chmod 664 /factory/mi1040_shading.txt
+
+#A450CG
+on property:ro.system.id=57
+    chmod 664 /factory/imx219_golden.txt
+    chmod 664 /factory/imx219_response.txt
+    chmod 664 /factory/imx219_shading.txt
+
+    chmod 664 /factory/gc0339_golden.txt
+    chmod 664 /factory/gc0339_response.txt
+    chmod 664 /factory/gc0339_shading.txt
+
+

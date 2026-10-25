@@ -1,0 +1,7 @@
+#============= netd ==============
+dontaudit netd self:capability sys_module;
+allow netd self:capability fsetid;
+allow netd init:tcp_socket { read write setopt getopt };
+
+#============= netd ==============
+allow netd kernel:system module_request;

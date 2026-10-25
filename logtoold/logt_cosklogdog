@@ -1,0 +1,33 @@
+#!/system/bin/sh
+
+set -x
+
+printk ()
+{
+	echo "LogTool-COS: $1" > /dev/kmsg
+}
+
+
+DATE=`timestamp`
+LOGDIR="/cache/logtool/cos/COS-$DATE"
+printk "Start running logtool-cos kernel log"
+
+ENABLE=`cat /cache/logtool/cos_enable`
+
+if [ "$ENABLE" == "1" ]; then
+	printk "Enable LogTool-COS kernel logging"
+else
+	printk "Disable LogTool-COS kernel logging"
+	while [ 1 ]
+	do
+		sleep 15
+	done
+fi
+
+mkdir -p $LOGDIR
+if [ -d "$LOGDIR" ]; then
+	printk "Starting klogdog"
+	getprop > $LOGDIR/getprop.txt
+    printk "/system/bin/klogdog -d $LOGDIR -s 500000 -f 80 -l -u -z 8192"
+    exec /system/bin/klogdog -d $LOGDIR -s 500000 -f 80 -l -u -z 8192
+fi

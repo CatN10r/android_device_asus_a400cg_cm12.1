@@ -1,0 +1,74 @@
+# Additional untrusted_app rules
+allow untrusted_app property_socket:file write;
+allow untrusted_app unlabeled:dir { rw_dir_perms setattr };
+#============= untrusted_app ==============
+allow untrusted_app proc_sysrq:file getattr;
+allow untrusted_app unlabeled:filesystem getattr;
+allow untrusted_app graphics_device:dir search;
+allow untrusted_app surfaceflinger_tmpfs:file {read write};
+#============= untrusted_app ==============
+allow untrusted_app keychain_data_file:dir search;
+allow untrusted_app misc_user_data_file:dir search;
+#============= untrusted_app ==============
+allow untrusted_app bcu_cpufreqrel_exec:file { getattr read };
+allow untrusted_app bd_prov_exec:file { getattr read };
+allow untrusted_app bootanim_exec:file { getattr read };
+allow untrusted_app clatd_exec:file { getattr read };
+allow untrusted_app config_file:dir { read search getattr };
+allow untrusted_app factory_file:dir { read search getattr };
+allow untrusted_app debuggerd_exec:file { getattr read };
+allow untrusted_app device:dir { read open };
+allow untrusted_app dhcp_exec:file { getattr read };
+allow untrusted_app dnsmasq_exec:file { getattr read };
+allow untrusted_app dpstmgr_exec:file { getattr read };
+allow untrusted_app drmserver_exec:file { getattr read };
+allow untrusted_app dumpstate_exec:file { getattr read };
+
+allow untrusted_app fg_conf_exec:file { getattr read };
+allow untrusted_app gpsd_exec:file { getattr read };
+allow untrusted_app hostapd_exec:file { getattr read };
+allow untrusted_app installd_exec:file { getattr read };
+allow untrusted_app keystore_exec:file { getattr read };
+allow untrusted_app lmkd_exec:file { getattr read };
+allow untrusted_app logcat_exec:file { getattr read };
+allow untrusted_app logd_exec:file { getattr read };
+allow untrusted_app logtoold_exec:file { getattr read };
+allow untrusted_app mdnsd_exec:file { getattr read };
+allow untrusted_app mediaserver_exec:file { getattr read };
+allow untrusted_app mmgr_exec:file { getattr read };
+allow untrusted_app mtp_exec:file { getattr read };
+allow untrusted_app netd_exec:file { getattr read };
+allow untrusted_app nvm_server_exec:file { getattr read };
+allow untrusted_app ppp_exec:file { getattr read };
+allow untrusted_app racoon_exec:file { getattr read };
+allow untrusted_app rild_exec:file { getattr read };
+allow untrusted_app sdcardd_exec:file { getattr read };
+allow untrusted_app servicemanager_exec:file { getattr read };
+allow untrusted_app surfaceflinger_exec:file { getattr read };
+allow untrusted_app uncrypt_exec:file getattr;
+allow untrusted_app vdc_exec:file { getattr read };
+allow untrusted_app vold_exec:file { getattr read };
+allow untrusted_app wpa_exec:file { getattr read };
+#============= untrusted_app ==============
+allow untrusted_app anr_data_file:dir read;
+allow untrusted_app tombstone_data_file:dir read;
+
+allow untrusted_app tmpfs:lnk_file read;
+
+#============= untrusted_app ==============
+allow untrusted_app atproxy_usbreset_exec:file { getattr read };
+allow untrusted_app sysinit_exec:file { getattr read };
+
+allow untrusted_app input_device:dir { read };
+allow untrusted_app log_device:dir { read };
+allow untrusted_app block_device:dir { search };
+allow untrusted_app dnsproxyd_socket:sock_file { read };
+allow untrusted_app fwmarkd_socket:sock_file { read };
+allow untrusted_app logd_socket:sock_file { read };
+allow untrusted_app logdr_socket:sock_file { read };
+allow untrusted_app property_socket:sock_file read;
+
+allow untrusted_app gps_data_file:dir { search };
+
+allow untrusted_app wlan_prov_exec:file getattr;
+

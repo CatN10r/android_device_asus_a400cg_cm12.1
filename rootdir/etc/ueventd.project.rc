@@ -1,0 +1,12 @@
+
+# sensors changed by cheng_kao
+/dev/kxtj9_dev            0660   system     system
+/dev/px3003b_misc_dev     0660   system     system
+
+# upi battery gauge daemon
+/dev/ug31xx             0660   system     system
+
+# add by leo for touch_fw_update ++
+/dev/hx8528               0660   system     system
+# add by leo for touch_fw_update --
+

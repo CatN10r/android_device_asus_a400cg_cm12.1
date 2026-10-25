@@ -1,0 +1,33 @@
+#!/system/bin/sh
+
+set -x
+
+printk ()
+{
+	echo "LogTool-POS: $1" > /dev/kmsg
+}
+
+
+DATE=`timestamp`
+LOGDIR="/mnt/sdcard/one_chance/Klog-$DATE"
+printk "Start running logtool-klog"
+
+mkdir -p $LOGDIR
+if [ -d "$LOGDIR" ]; then
+	printk "Starting klogdog"
+	getprop > $LOGDIR/getprop.txt
+	if [ -e "/proc/emmc_ipanic_console" ]; then
+		printk "cp /proc/emmc_ipanic_console $LOGDIR/emmc_ipanic_console"
+		cp /proc/emmc_ipanic_console $LOGDIR/emmc_ipanic_console
+	fi
+	if [ -e "/proc/emmc_ipanic_threads" ]; then
+		printk "cp /proc/emmc_ipanic_threads $LOGDIR/emmc_ipanic_threads"
+		cp /proc/emmc_ipanic_threads $LOGDIR/emmc_ipanic_threads
+	fi
+	if [ -e "/proc/ipanic_fabric_err" ]; then
+		printk "cp /proc/ipanic_fabric_err $LOGDIR/ipanic_fabric_err"
+		cp /proc/ipanic_fabric_err $LOGDIR/ipanic_fabric_err
+	fi
+    printk "/system/bin/klogdog -d $LOGDIR -s 500000 -f 80 -l -u -z 8192"
+    exec /system/bin/klogdog -d $LOGDIR -s 500000 -f 80 -l -u -z 8192
+fi

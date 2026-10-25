@@ -1,0 +1,14 @@
+type bcu_cpufreqrel_service,	service_manager_type;
+type akmd_service, 	service_manager_type;
+type mmgr_service, 		service_manager_type;
+type nvmmanager_service, 	service_manager_type;
+type logtoold_service, 	service_manager_type;
+
+
+# Additional service_contexts rules
+
+type securitymanager_service,     service_manager_type;
+type securityfile_service, service_manager_type;
+type display_service, service_manager_type;
+type cws_service, service_manager_type;
+type hwc_service, service_manager_type;

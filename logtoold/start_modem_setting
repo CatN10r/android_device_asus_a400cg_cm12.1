@@ -1,0 +1,128 @@
+#!/system/bin/sh
+
+PATH=/data/data/com.asus.LogTool/files:$PATH
+export PATH
+
+WRITE_LOG="log -p d -t ASUS_MTS-SH"
+
+OPT_L=`getprop persist.logtool.modem.level`
+
+#set -x
+
+echo -e -r "at+xsio=3\r\n" > /dev/gsmtty19
+sleep 1
+
+if [ "$OPT_L" == "1" ]; then
+    $WRITE_LOG "Setting -t1  ..."
+#	$WRITE_LOG "at+trace=0 > /dev/gsmtty19"
+#	echo -e -r "at+trace=0\r\n" > /dev/gsmtty19
+#	sleep 1
+#	$WRITE_LOG "at+xsystrace=0 > /dev/gsmtty19"
+#	echo -e -r "at+xsystrace=0\r\n" > /dev/gsmtty19
+#	sleep 1
+	$WRITE_LOG "at+xsystrace=0,\"bb_sw=1\",\"bb_sw=sdl:si,tr,pr,st,db,lt,li,gt\",\"oct=4\" > /dev/gsmtty19"
+	echo -e -r "at+xsystrace=0,\"bb_sw=1\",\"bb_sw=sdl:si,tr,pr,st,db,lt,li,gt\",\"oct=4\"\r\n" > /dev/gsmtty19
+	sleep 1
+	$WRITE_LOG "at+trace=1 > /dev/gsmtty19"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19
+fi
+if [ "$OPT_L" == "2" ]; then
+    $WRITE_LOG "Setting -t2  ..."
+#	$WRITE_LOG "at+trace=0 > /dev/gsmtty19"
+#	echo -e -r "at+trace=0\r\n" > /dev/gsmtty19
+#	sleep 1
+#	$WRITE_LOG "at+xsystrace=0 > /dev/gsmtty19"
+#	echo -e -r "at+xsystrace=0\r\n" > /dev/gsmtty19
+#	sleep 1
+	$WRITE_LOG "at+xsystrace=0,\"bb_sw=1;3g_sw=1\",\"bb_sw=sdl:si,tr,pr,st,db,lt,li,gt\",\"oct=4\" > /dev/gsmtty19"
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1\",\"bb_sw=sdl:si,tr,pr,st,db,lt,li,gt\",\"oct=4\"\r\n" > /dev/gsmtty19
+	sleep 1
+	$WRITE_LOG "at+trace=1 > /dev/gsmtty19"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19
+fi
+if [ "$OPT_L" == "3" ]; then
+    $WRITE_LOG "Setting -t3  ..."
+#	$WRITE_LOG "at+trace=0 > /dev/gsmtty19"
+#	echo -e -r "at+trace=0\r\n" > /dev/gsmtty19
+#	sleep 1
+#	$WRITE_LOG "at+xsystrace=0 > /dev/gsmtty19"
+#	echo -e -r "at+xsystrace=0\r\n" > /dev/gsmtty19
+#	sleep 1
+	$WRITE_LOG "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=1;3g_dsp=1\",\"bb_sw=sdl:si,tr,pr,st,db,lt,li,gt;digrfx=0x03\",\"oct=4\" > /dev/gsmtty19"
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=1;3g_dsp=1\",\"bb_sw=sdl:si,tr,pr,st,db,lt,li,gt;digrfx=0x03\",\"oct=4\"\r\n" > /dev/gsmtty19
+	sleep 1
+	$WRITE_LOG "at+trace=1 > /dev/gsmtty19"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19
+fi
+if [ "$OPT_L" == "4" ]; then
+    $WRITE_LOG "Setting -t4 for audio ..."
+	$WRITE_LOG "at+trace=0 > /dev/gsmtty19"
+	echo -e -r "at+trace=0\r\n" > /dev/gsmtty19
+	sleep 1
+	$WRITE_LOG "at+xsystrace=0 > /dev/gsmtty19"
+	echo -e -r "at+xsystrace=0\r\n" > /dev/gsmtty19
+	sleep 1
+	$WRITE_LOG "at+xsystrace=0,\"digrfx=1;bb_sw=1;3g_sw=1\",\"digrfx=0x03\",\"oct=4\" > /dev/gsmtty19"
+	echo -e -r "at+xsystrace=0,\"digrfx=1;bb_sw=1;3g_sw=1\",\"digrfx=0x03\",\"oct=4\"\r\n" > /dev/gsmtty19
+	sleep 1
+	$WRITE_LOG "at+trace=1 > /dev/gsmtty19"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19
+	sleep 1
+	$WRITE_LOG "at@sec:code_verify(1,{0x32,0x38,0x39,0x34,0x33,0x34,0x34,0x37}) > /dev/gsmtty19"
+	echo -e -r "at@sec:code_verify(1,{0x32,0x38,0x39,0x34,0x33,0x34,0x34,0x37})" > /dev/gsmtty19
+fi
+if [ "$OPT_L" == "5" ]; then
+    $WRITE_LOG "Setting -t5 not ready!!!!!!!!!!!! ..."
+fi
+
+
+MSG_RETURN="setprop logtool.trigger.mesg"
+#### dump state ####
+
+#if [ "`getprop persist.logtool.audio.logging`" == "1" ]; then
+#	$MSG_RETURN "FAILED: Set Call Log Fail"
+#        $WRITE_LOG "at@nvm:fix_cps.stack_masks.uas_masks.umac_mask=0x21 > /dev/gsmtty19"
+#	echo -e -r "at@nvm:fix_cps.stack_masks.uas_masks.umac_mask=0x21\r\n" > /dev/gsmtty19
+#	sleep 1
+#        $WRITE_LOG "at@nvm:fix_cps.stack_masks.uas_masks.umac_mask? > /dev/gsmtty19"
+#	echo -e -r "at@nvm:fix_cps.stack_masks.uas_masks.umac_mask?\r\n" > /dev/gsmtty19
+#	sleep 1
+#        $WRITE_LOG "at@nvm:fix_cps.u8IsSpeechCoeffLoggingEnabled=1 > /dev/gsmtty19"
+#	echo -e -r "at@nvm:fix_cps.u8IsSpeechCoeffLoggingEnabled=1\r\n" > /dev/gsmtty19
+#	sleep 1
+#        $WRITE_LOG "at@nvm:fix_cps.u8IsSpeechCoeffLoggingEnabled? > /dev/gsmtty19"
+#	echo -e -r "at@nvm:fix_cps.u8IsSpeechCoeffLoggingEnabled?\r\n" > /dev/gsmtty19
+#	sleep 1
+#        $WRITE_LOG "at+xl1set=\"L9\" > /dev/gsmtty19"
+#	echo -e -r "at+xl1set=\"L9\"\r\n" > /dev/gsmtty19
+#	sleep 1
+#        $WRITE_LOG "at@xl1:sc_config_3g(1) > /dev/gsmtty19"
+#	echo -e -r "at@xl1:sc_config_3g(1)\r\n" > /dev/gsmtty19
+#	sleep 1
+#        $WRITE_LOG "at@xl1:sc_start(shared_mem) > /dev/gsmtty19"
+#	echo -e -r "at@xl1:sc_start(shared_mem)\r\n" > /dev/gsmtty19
+#	sleep 1
+#        $WRITE_LOG "at@xl1:xllt_set_template(1,{basic}) > /dev/gsmtty19"
+#	echo -e -r "at@xl1:xllt_set_template(1,{basic})\r\n" > /dev/gsmtty19
+#	setprop logtool.call.setting 1
+#        $MSG_RETURN "Success!"
+#fi
+
+#	sleep 3
+#	$WRITE_LOG "at+xsystrace=20 > /dev/gsmtty19"
+#	echo -e -r "at+xsystrace=20\r\n" > /dev/gsmtty19
+#	sleep 1
+#	$WRITE_LOG "at+xsystrace=10 > /dev/gsmtty19"
+#	echo -e -r "at+xsystrace=10\r\n" > /dev/gsmtty19
+#	sleep 1
+#	$WRITE_LOG "at+xsystrace=11 > /dev/gsmtty19"
+#	echo -e -r "at+xsystrace=11\r\n" > /dev/gsmtty19
+#	sleep 1
+#	$WRITE_LOG "at+trace? > /dev/gsmtty19"
+#	echo -e -r "at+trace?\r\n" > /dev/gsmtty19
+
+setprop logtool.call.setting 0
+setprop logtool.modem.atcommand.finish "1"
+echo PASS
+sleep 2
+

@@ -1,0 +1,13 @@
+type upi_ug31xx, domain;
+type upi_ug31xx_exec, exec_type, file_type;
+init_daemon_domain(upi_ug31xx);
+
+allow upi_ug31xx config_file:dir {search };
+allow upi_ug31xx config_file:file {read write open getattr };
+allow upi_ug31xx fuse:dir {search };
+
+#============= upi_ug31xx ============
+allow upi_ug31xx ug31xx_device:chr_file { read write open ioctl };
+allow upi_ug31xx input_device:dir { read open search };
+allow upi_ug31xx self:netlink_kobject_uevent_socket { create bind setopt };
+

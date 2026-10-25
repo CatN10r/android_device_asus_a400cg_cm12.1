@@ -1,0 +1,38 @@
+type logtoold, domain;
+type logtoold_exec, exec_type, file_type;
+init_daemon_domain(logtoold);
+
+allow logtoold default_prop:property_service set;
+allow logtoold rootfs:file execute_no_trans;
+allow logtoold_exec shell_exec:file execute_no_trans;
+allow logtoold system_file:file execute_no_trans;
+allow logtoold logtoold_exec:file execute_no_trans;
+#allow logtoold_exec shell_exec:file execute;
+allow shell logtoold_exec:file getattr;
+#============= logtoold ==============
+allow logtoold shell_exec:file entrypoint;
+allow logtoold app_data_file:dir search;
+#============= logtoold ==============
+allow logtoold shell_exec:file read;
+#============= logtoold ==============
+allow logtoold kmsg_device:chr_file write;
+allow logtoold property_socket:sock_file write;
+allow logtoold self:capability { dac_read_search dac_override };
+allow logtoold system_data_file:dir read;
+
+allow logtoold logtoold_service:service_manager add;
+
+allow logtoold system_radio_prop:property_service set;
+#============= logtoold ==============
+allow logtoold kmsg_device:chr_file open;
+allow logtoold cache_file:dir write;
+
+allow logtoold init:unix_stream_socket { connectto };
+#============= logtoold ==============
+allow logtoold cache_file:dir { add_name create remove_name };
+allow logtoold logtool_prop:property_service set;
+allow logtoold system_data_file:dir { open write remove_name rmdir add_name };
+
+
+#============= logtoold ==============
+allow logtoold init:fifo_file { read write };

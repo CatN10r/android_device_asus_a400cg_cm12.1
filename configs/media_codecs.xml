@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<MediaCodecs>
+    <Include href="media_codecs_google_audio.xml" />
+    <Include href="media_codecs_google_telephony.xml" />
+        <Decoders>
+        <!-- Hardware Intel Video Decoders -->
+        <MediaCodec name="OMX.Intel.VideoDecoder.AVC" type="video/avc" >
+            <Limit name="size" min="96x32" max="1920x1088" />
+            <Quirk name="requires-hold-extra-buffers" />
+            <Feature name="adaptive-playback" />
+        </MediaCodec>
+        <MediaCodec name="OMX.Intel.VideoDecoder.H263" type="video/3gpp" >
+            <Limit name="size" min="96x32" max="640x480" />
+            <Quirk name="requires-hold-extra-buffers" />
+            <Feature name="adaptive-playback" />
+        </MediaCodec>
+        <MediaCodec name="OMX.Intel.VideoDecoder.MPEG4" type="video/mp4v-es" >
+            <Limit name="size" min="96x32" max="1280x720" />
+            <Quirk name="requires-hold-extra-buffers" />
+            <Feature name="adaptive-playback" />
+        </MediaCodec>
+        <MediaCodec name="OMX.Intel.VideoDecoder.AVC.secure" type="video/avc">
+            <Limit name="size" min="96x32" max="1920x1088" />
+            <Quirk name="requires-hold-extra-buffers" />
+            <Feature name="adaptive-playback" />
+            <Feature name="secure-playback" required="true" />
+        </MediaCodec>
+        <MediaCodec name="OMX.Intel.mp3.decoder" type="audio/mpeg" />
+        <MediaCodec name="OMX.google.mp3.decoder" type="audio/mpeg" />
+        <MediaCodec name="OMX.Intel.amrnb.decoder" type="audio/3gpp" />
+        <MediaCodec name="OMX.google.amrnb.decoder" type="audio/3gpp" />
+        <MediaCodec name="OMX.Intel.amrwb.decoder" type="audio/amr-wb" />
+        <MediaCodec name="OMX.google.amrwb.decoder" type="audio/amr-wb" />
+        <MediaCodec name="OMX.Intel.aac.decoder" type="audio/mp4a-latm" />
+        <MediaCodec name="OMX.google.aac.decoder" type="audio/mp4a-latm" />
+        <MediaCodec name="OMX.google.raw.decoder" type="audio/raw" />
+        <MediaCodec name="OMX.google.g711.alaw.decoder" type="audio/g711-alaw" >
+            <Quirk name="codec-requires-samplerate" />
+        </MediaCodec>
+        <MediaCodec name="OMX.google.g711.mlaw.decoder" type="audio/g711-mlaw" >
+            <Quirk name="codec-requires-samplerate" />
+        </MediaCodec>
+        <MediaCodec name="OMX.Intel.vorbis.decoder" type="audio/vorbis" />
+        <MediaCodec name="OMX.google.vorbis.decoder" type="audio/vorbis" />
+        <MediaCodec name="OMX.Intel.alac.decoder" type="audio/alac" />
+
+        <MediaCodec name="OMX.google.mpeg4.decoder" type="video/mp4v-es" />
+        <MediaCodec name="OMX.google.h263.decoder" type="video/3gpp" />
+        <MediaCodec name="OMX.google.h264.decoder" type="video/avc" />
+        <MediaCodec name="OMX.google.vp8.decoder" type="video/x-vnd.on2.vp8" />
+        <MediaCodec name="OMX.google.vp9.decoder" type="video/x-vnd.on2.vp9" />
+        <MediaCodec name="OMX.google.hevc.decoder" type="video/hevc" />
+    </Decoders>
+
+    <Encoders>
+        <!-- Hardware Intel Video Encoders -->
+        <MediaCodec name="OMX.Intel.VideoEncoder.H263" type="video/3gpp" >
+            <Quirk name="requires-allocate-on-input-ports" />
+        </MediaCodec>
+        <MediaCodec name="OMX.Intel.VideoEncoder.AVC" type="video/avc" >
+            <Quirk name="requires-allocate-on-input-ports" />
+        </MediaCodec>
+
+        <!-- Software Google Video Encoders (Fallback) -->
+        <MediaCodec name="OMX.google.h263.encoder" type="video/3gpp" />
+        <MediaCodec name="OMX.google.h264.encoder" type="video/avc" />
+        <MediaCodec name="OMX.google.mpeg4.encoder" type="video/mp4v-es" />
+        <MediaCodec name="OMX.google.vp8.encoder" type="video/x-vnd.on2.vp8" />
+
+        <!-- Audio Encoders -->
+        <MediaCodec name="OMX.Intel.amrnb.encoder" type="audio/3gpp" />
+        <MediaCodec name="OMX.google.amrnb.encoder" type="audio/3gpp" />
+        <MediaCodec name="OMX.Intel.amrwb.encoder" type="audio/amr-wb" />
+        <MediaCodec name="OMX.google.amrwb.encoder" type="audio/amr-wb" />
+        <MediaCodec name="OMX.Intel.aac.encoder" type="audio/mp4a-latm" />
+        <MediaCodec name="OMX.google.aac.encoder" type="audio/mp4a-latm" />
+        <MediaCodec name="OMX.google.flac.encoder" type="audio/flac" />
+    </Encoders>
+    <Include href="media_codecs_google_video.xml" />
+</MediaCodecs>

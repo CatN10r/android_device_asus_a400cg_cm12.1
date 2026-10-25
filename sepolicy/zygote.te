@@ -1,0 +1,12 @@
+#allow init self:capability2 { mac_admin };
+allow zygote property_socket:sock_file write;
+#allow zygote device:chr_file { read write };
+allow zygote system_prop:property_service set;
+#allow zygote device:chr_file open;
+
+# Additional zygote rules
+
+allow zygote self:process execmem;
+allow zygote gpu_device:chr_file rw_file_perms;
+# below line breaks neverallow in domain.te on line 293
+#allow zygote system_file:file write;
